@@ -1,0 +1,29 @@
+{
+  "name": "task-management-api",
+  "version": "1.0.0",
+  "description": "A simple task management (RESTful) API built with Express.js.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gh-aam/task-management-api.git"
+  },
+  "keywords": [
+    "task",
+    "management",
+    "restful",
+    "api",
+    "express.js"
+  ],
+  "author": "Abdullah Al Mamun",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gh-aam/task-management-api/issues"
+  },
+  "homepage": "https://github.com/gh-aam/task-management-api#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
