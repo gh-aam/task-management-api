@@ -20,7 +20,7 @@
     "express.js"
   ],
   "author": "Abdullah Al Mamun",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/gh-aam/task-management-api/issues"
   },

@@ -1,3 +1,4 @@
+// index.js
 const express = require('express');
 const app = express();
 const port = 3000;
@@ -5,12 +6,23 @@ const port = 3000;
 // Middleware to parse JSON request bodies
 app.use(express.json());
 
+// Middleware to log each request
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.originalUrl}`);
+  next();
+});
+
 // In-memory data store (array) for tasks
 let tasks = [
   { id: 1, title: "Learn Express.js", completed: false },
   { id: 2, title: "Build a RESTful API", completed: true },
   { id: 3, title: "Develop a Express.js Server", completed: false },
 ];
+
+// GET /: Root route
+app.get('/', (req, res) => {
+  res.send('Welcome to Task Management API!');
+});
 
 // GET /tasks: Retrieve a list of all tasks
 app.get('/tasks', (req, res) => {
@@ -29,8 +41,16 @@ app.get('/tasks/:id', (req, res) => {
   }
 });
 
+// Validation middleware for POST /tasks
+const validateTask = (req, res, next) => {
+  if (!req.body.title) {
+    return res.status(400).json({ message: 'Title is required' });
+  }
+  next();
+};
+
 // POST /tasks: Create a new task
-app.post('/tasks', (req, res) => {
+app.post('/tasks', validateTask, (req, res) => {
   const newTask = {
     id: tasks.length > 0 ? Math.max(...tasks.map(task => task.id)) + 1 : 1,
     title: req.body.title,
@@ -68,5 +88,5 @@ app.delete('/tasks/:id', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Task Management API listening on port ${port}`);
+  console.log(`Task Management API listening on http://localhost:${port}`);
 });
